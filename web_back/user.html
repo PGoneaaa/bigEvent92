@@ -22,48 +22,108 @@
         <div class="container-fluid common_con">
             <form class="form-horizontal article_form">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">用户名称：</label>
+                    <label for="username" class="col-sm-2 control-label">用户名称：</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="inputEmail3" value="李思思">
+                        <input type="text" class="form-control" id="username" name="username" value="李思思">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">昵称：</label>
+                    <label for="nickname" class="col-sm-2 control-label">昵称：</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="inputEmail3" value="思思">
+                        <input type="text" class="form-control" id="nickname" name="nickname" value="思思">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">邮箱：</label>
+                    <label for="emali" class="col-sm-2 control-label">邮箱：</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="inputEmail3" value="lisisi@126.com">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">用户图标：</label>
-                    <div class="col-sm-10">
-                        <img src="images/2.jpg" alt="" class="user_pic">
-                        <input type="file" id="exampleInputFile">
+                        <input type="text" class="form-control" id="emali" name="emali" value="lisisi@126.com">
                     </div>
                 </div>
 
                 <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">密码：</label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control" id="inputEmail3" value="12345678">
-                        </div>
+                    <label for="user_pic" class="col-sm-2 control-label">用户图标：</label>
+                    <div class="col-sm-10">
+                        <img src="images/2.jpg" alt="" class="user_pic" id='avatar'>
+                        <input type="file" id="user_pic">
                     </div>
-               
-    
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">密码：</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="password" name="password" value="12345678">
+                    </div>
+                </div>
+
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-success">修改</button>
+                        <button type="button" class="btn btn-success" id='btn'>修改</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
+    <script>
+        $.ajax({
+            url: 'http://localhost:8000/admin/userinfo_get',
+            success: function (res) {
+                if (res.code === 200) {
+                    $.each(res.data, function (k, ele) {
+                        if (k === 'user_pic') {
+                            $('#avatar').prop('src', ele);
+                            return;
+                        }
+                        $('#' + k).val(ele);
+                    })
+                }
+            }
+        })
+
+
+        $('#btn').on('click', function () {
+            // 1.1 检测内容
+            // 检测文件域是否选择文件
+            // 使用DOM对象的files属性,进行length检测
+            if (
+                $('#username').val().trim() === '' ||
+                $('#nickname').val().trim() === '' ||
+                $('#emali').val().trim() === '' ||
+                $('#password').val().trim() === '' ||
+                $('#user_pic')[0].files.length === 0
+            ) {
+                alert('内容没有填写完毕');
+                return;//阻止后续的请求发送
+            }
+            // 1.2 将数据发送给服务端处理(使用FormData即可)
+            // 传入参数必须为DOM对象形式的form
+
+            var fd = new FormData($('form')[0]);
+            // 使用jq的ajax发送
+            $.ajax({
+                type: 'post',
+                url: 'http://localhost:8000/admin/userinfo_edit',
+                data: fd,
+                contentType: false, //不需要jQ 设置内容类型       
+                processData: false,
+                success: function (res) {
+                    if (res.code == 200) {
+                        parent.location.href = './login.html'
+                        // window.location.href = './login.html'
+                    }
+                }
+            })
+
+
+
+        });
+
+        $('#user_pic').on('change', function () {
+            var tempSrc = URL.createObjectURL($(this)[0].files[0]);
+            $('#avatar').prop('src', tempSrc);
+        })
+    </script>
 
 </body>
 

@@ -8,3 +8,13 @@ var BASE_URL = 'http://localhost:8000';//通过变量保存基地址
 var LOGIN = BASE_URL + '/admin/login';
 var LOGOUT = BASE_URL + '/admin/logout';
 var GET_USER = BASE_URL + '/admin/getuser';
+
+
+
+
+
+
+
+
+
+var UIF = BASE_URL + '/admin/userinfo_edit';
