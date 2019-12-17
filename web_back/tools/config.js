@@ -5,9 +5,14 @@
 var BASE_URL = 'http://localhost:8000';//通过变量保存基地址
 
 
-var LOGIN = BASE_URL + '/admin/login';
-var LOGOUT = BASE_URL + '/admin/logout';
-var GET_USER = BASE_URL + '/admin/getuser';
+var LOGIN = BASE_URL + '/admin/login'; //用户登陆
+var LOGOUT = BASE_URL + '/admin/logout';//退出登陆
+var GET_USER = BASE_URL + '/admin/getuser';//获取用户信息
+
+var SHAN_CHU = BASE_URL + '/admin/category_delete';
+var BIAN_JI = BASE_URL + '/admin/category_edit';
+var XIN_ZENG = BASE_URL + '/admin/category_add';
+var GET_CATE = BASE_URL + '/admin/category_search';//文章类别获取
 
 
 
