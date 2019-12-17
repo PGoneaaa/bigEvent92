@@ -111,6 +111,7 @@
 
     </script>
     <script src='./tools/config.js'></script>
+    <script src='./tools/user.js'></script>
     <script>
 
         var $inp = $('.inp');
@@ -121,7 +122,7 @@
             }
 
 
-            // 请求
+            请求
             $.ajax({
                 type: 'post',
                 url: LOGOUT,
@@ -134,6 +135,14 @@
                 }
             })
 
+
+        })
+
+        user.getUser({
+            success: function (data) {
+                $('.user_info img,.user_center_link img').prop('src', data.user_pic);
+                $('.user_info span').text('欢迎' + data.nickname);
+            }
         })
 
 
