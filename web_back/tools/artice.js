@@ -50,7 +50,7 @@ var article = {
             type: 'post',
             url: SHAN_CHU,
             data: {
-                id: options.data
+                id: options.data.id
             },
             success: function (res) {
                 if (res.code === 200) {

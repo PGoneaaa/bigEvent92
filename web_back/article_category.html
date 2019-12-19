@@ -252,7 +252,9 @@
             var id = $(this).data('id');
 
             article.shanChu({
-                data: id,
+                data: {
+                    id: id
+                },
 
 
                 success: function () {

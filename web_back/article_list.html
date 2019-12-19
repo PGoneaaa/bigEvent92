@@ -22,19 +22,27 @@
             <div class="row opt_btns">
                 <div class="col-xs-6">
                     <form class="form-inline">
-                        <select id="selCategory" name="" class="form-control input-sm">
-                            <option>所有分类</option>
-                            <option>未分类</option>
-                            <option>奇趣事</option>
-                            <option>会生活</option>
-                            <option>爱旅行</option>
+                        <!-- 分类筛选的下拉菜单,应当数据分类数据进行创建 -->
+                        <select id="selCategory" name="type" class="form-control input-sm">
+                            <!-- 所有分类选项是固定的,不需要创建 -->
+                            <!-- 如果没有value就会提交内容 -->
+                            <option value=''>所有分类</option>
+                            <!-- <option value='1'>未分类</option>
+                            <option value='2'>奇趣事</option>
+                            <option value='3'>会生活</option>
+                            <option value='4'>爱旅行</option> -->
                         </select>
+                        <!-- 状态下拉菜单 -->
                         <select id="selStatus" name="" class="form-control input-sm">
-                            <option>所有状态</option>
-                            <option value="drafted">草稿</option>
-                            <option value="published">已发布</option>
+                            <!-- 状态不需要我们自己经常修改处理,写成固定格式 -->
+                            <!-- 设置value为对对应内容 必须中文 -->
+                            <option value=''>所有状态</option>
+                            <option value="草稿">草稿</option>
+                            <option value="已发布">已发布</option>
                         </select>
-                        <button id="btnSearch" class="btn btn-default btn-sm">筛选</button>
+                        <!-- 筛选按钮 -->
+
+                        <button id="btnSearch" type='button' class="btn btn-default btn-sm">筛选</button>
                     </form>
                 </div>
                 <div class="col-xs-6">
@@ -57,8 +65,8 @@
 
 
 
-                    <tr>
-                        
+                    <!-- <tr>
+
                         <td>王积千造统最头</td>
                         <td>杰克</td>
                         <td>奇趣事</td>
@@ -77,7 +85,7 @@
 
 
                     <tr>
-                     
+
                         <td>级电使正回</td>
                         <td>肉丝</td>
                         <td>爱旅行</td>
@@ -96,7 +104,7 @@
 
 
                     <tr>
-                       
+
                         <td>近难领管年算</td>
                         <td>杰克</td>
                         <td>会生活</td>
@@ -115,7 +123,7 @@
 
 
                     <tr>
-                       
+
                         <td>龙大实究</td>
                         <td>杰克</td>
                         <td>未分类</td>
@@ -134,7 +142,7 @@
 
 
                     <tr>
-                      
+
                         <td>算性得走来拉</td>
                         <td>肉丝</td>
                         <td>奇趣事</td>
@@ -153,7 +161,7 @@
 
 
                     <tr>
-                      
+
                         <td>几平会出气</td>
                         <td>管理员</td>
                         <td>奇趣事</td>
@@ -172,7 +180,7 @@
 
 
                     <tr>
-                      
+
                         <td>世团先证型角</td>
                         <td>杰克</td>
                         <td>奇趣事</td>
@@ -191,7 +199,7 @@
 
 
                     <tr>
-                      
+
                         <td>构更反步五</td>
                         <td>肉丝</td>
                         <td>奇趣事</td>
@@ -210,7 +218,7 @@
 
 
                     <tr>
-                       
+
                         <td>组方些</td>
                         <td>肉丝</td>
                         <td>会生活</td>
@@ -229,7 +237,7 @@
 
 
                     <tr>
-                      
+
                         <td>日做发光成</td>
                         <td>管理员</td>
                         <td>爱旅行</td>
@@ -243,36 +251,162 @@
                             <a href="post-edit.html?id=995" class="btn btn-default btn-xs">编辑</a>
                             <a href="javascript:deleteTr( 995 );" class="btn btn-danger btn-xs">删除</a>
                         </td>
-                    </tr>
+                    </tr> -->
 
 
                 </tbody>
             </table>
 
             <div class="row text-center">
-            <ul class="pagination pagination-sm">
-                <li class="page-item first disabled"><a href="#" class="page-link">首页</a></li>
-                <li class="page-item prev disabled"><a href="#" class="page-link">上一页</a></li>
-                <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                <li class="page-item"><a href="#" class="page-link">6</a></li>
-                <li class="page-item"><a href="#" class="page-link">7</a></li>
-                <li class="page-item next"><a href="#" class="page-link">下一页</a></li>
-                <li class="page-item last"><a href="#" class="page-link">尾页</a></li>
-            </ul>
-        </div>
+                <ul class="pagination pagination-sm" id='list'>
+                    <li class="page-item first disabled"><a href="#" class="page-link">首页</a></li>
+                    <li class="page-item prev disabled"><a href="#" class="page-link">上一页</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link">6</a></li>
+                    <li class="page-item"><a href="#" class="page-link">7</a></li>
+                    <li class="page-item next"><a href="#" class="page-link">下一页</a></li>
+                    <li class="page-item last"><a href="#" class="page-link">尾页</a></li>
+                </ul>
+            </div>
 
         </div>
     </div>
+    <script>
+        $('#release_btn').click(function () {
+            window.parent.setMenu(1, 1);
+        })
 
+
+    </script>
+    <script src='./tools/template-web.js'></script>
+    <script src='./js/jquery.twbsPagination.js'></script>
+    <script src='./tools/config.js'></script>
+    <script src='./tools/artice.js'></script>
+    <script type='text/template' id='tem'>
+{{each data obj}}
+<tr>
+
+    <td>{{obj.title}}</td>
+    <td>{{obj.author}}</td>
+    <td>{{obj.type}}</td>
+    <td class="text-center">{{obj.date}}</td>
+
+
+    <td class="text-center">{{obj.state}}</td>
+
+
+    <td class="text-center">
+        <a href="post-edit.html?id=1000" class="btn btn-default btn-xs">编辑</a>
+        <a href="javascript:deleteTr( 1000 );" class="btn btn-danger btn-xs">删除</a>
+    </td>
+</tr>
+{{/each}}
+</script>
+
+    <script type="text/template" id='temp'>
+    {{each data val}}
+        <option value="{{val.id}}">{{val.name}}</option>
+    {{/each}}
+    
+    </script>
     <script>
         // 设置左侧菜单
-        $('#release_btn').click(function(){
-            window.parent.setMenu(1,1);
+
+
+
+        // 1.请求与数据并进行结构创建
+        getArticle();
+        // 2 文章信息分页展示(设置位置,在getArticle中)
+        //  -使用jQ插件引入文件
+        // -调用插件方法,设置分页结构
+        // -需要由接口响应总页数
+        // - 必须在第一请求道数据后进行操作
+        // 点击页码,将页码发送给服务端获取新数据
+        //         根据数据进行结构创建
+        // 
+
+
+
+        var page = 1;//设置全局变量,用来记录当前展示的页码
+        var $list = $('#list');
+        var lastTotalPage = 0;
+        // 筛选功能
+        // 请求分类数据,进行下拉菜单结构创建
+        article.getCate({
+            success: function (res) {
+                $('#selCategory').append(template('temp', res))
+            }
         })
+
+
+        //  筛选按钮
+        $('#btnSearch').on('click', function () {
+            // 调用之前的函数,但是需要对参数进行处理,多了两个参数
+            getArticle();
+            $('first').click();
+
+        })
+
+        function getArticle() {
+            $.ajax({
+                url: 'http://localhost:8000/admin/search',
+                data: {
+                    page: page,
+                    type: $('#selCategory').val(),
+                    state: $('#selStatus').val(),
+                },
+                success: function (res) {
+
+
+                    if (res.code === 200) {
+
+
+                        var str = template('tem', res)
+                        $('tbody').html(str);
+
+                        var totalPage = res.totalPage;
+
+
+                        if (totalPage === lastTotalPage) {
+                            return;
+                        }
+
+                        // 记录上一次的页数
+                        lastTotalPage = totalPage;
+
+                        $list.twbsPagination('destroy')
+
+
+                        $list.twbsPagination({
+                            totalPages: totalPage,
+                            vasiblePage: 5,
+                            first: '第一页',
+                            last: '尾页',
+                            prev: '上一页',
+                            next: '下一页',
+                            onPageClick: function (e, Pages) {
+                                page = Pages;
+                                getArticle();
+                            }
+
+
+                        })
+
+
+                    };
+                }
+
+
+
+
+            })
+        }
+
+
     </script>
 
 </body>
